@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siphiwo Lushaba - Sales, Marketing & Entrepreneurship</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* ==========================================================
+           BASE STYLES & LAYOUT
+           ========================================================== */
+        :root {
+            --primary-color: #0077b6; /* Professional Blue */
+            --primary-dark: #005f96;
+            --secondary-color: #f1f1f1; /* Light Gray */
+            --text-color: #333;
+            --light-text: #f9f9f9;
+            --font-family-primary: 'Arial', sans-serif;
+            --font-family-header: 'Helvetica Neue', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-primary);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #fff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 80px 0;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            flex-direction: column; /* Ensure sections flow vertically */
+        }
+
+        /* TYPOGRAPHY */
+        h1, h2 {
+            font-family: var(--font-family-header);
+            font-weight: 700;
+        }
+
+        h1 { font-size: 3.8em; line-height: 1.1; color: var(--light-text); }
+        h2 { font-size: 2.5em; margin-bottom: 40px; text-align: center; color: var(--text-color); }
+        
+        section#contact h2 { color: var(--light-text); }
+
+
+        /* BUTTONS */
+        .btn {
+            display: inline-block;
+            padding: 14px 40px;
+            background-color: var(--primary-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 119, 182, 0.3);
+            border: none; /* Ensure buttons in the body don't have borders */
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 119, 182, 0.4);
+        }
+
+        /* ==========================================================
+           1. HERO SECTION STYLES (Cinematic Background)
+           ========================================================== */
+        #hero {
+            position: relative;
+            min-height: 100vh;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            padding: 0;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Using a placeholder. Replace with high-res image */
+            background-image: url('images/2nd\ img.jpg'); 
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.5); 
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 20px;
+        }
+        
+        .hero-content p {
+            color: var(--light-text);
+            font-size: 1.2em;
+        }
+
+        /* ==========================================================
+           2. ABOUT & 3. VENTURES STYLES
+           ========================================================== */
+        #about {
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .achievements-grid {
+            width: 100%; /* Important for horizontal centering on desktop */
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .achievement-card {
+            flex: 1;
+            padding: 30px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            max-width: 300px;
+            background-color: #fff;
+            transition: box-shadow 0.3s, transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center; /* Default center align for desktop */
+        }
+        
+        .achievement-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 119, 182, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .venture-cards {
+             display: flex;
+            justify-content: space-around;
+            gap: 40px;
+            margin-top: 50px;
+            width: 100%;
+        }
+        
+        .venture-card {
+            flex: 1;
+            background-color: var(--secondary-color);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.4s;
+        }
+
+
+        /* ==========================================================
+           5. CONTACT SECTION STYLES (PREMIUM STYLING)
+           ========================================================== */
+        #contact {
+            background-color: var(--primary-color);
+            padding: 80px 0 50px 0;
+        }
+        
+        .contact-form-wrapper {
+            max-width: 600px;
+            margin: 40px auto 0;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 35px;
+        }
+
+        /* Basic labels hidden on desktop view to use placeholder as label */
+        .contact-form label {
+            display: none; 
+        }
+        
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 15px 15px 15px 15px; /* Consistent padding */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: var(--font-family-primary);
+            font-size: 1em;
+            transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+            outline: none;
+            background-color: var(--secondary-color); /* Light gray background for fields */
+        }
+
+        .contact-form select {
+            /* Make select the same height as input fields */
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .contact-form select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.2);
+            background-color: #fff; /* White background on focus */
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+        }
+        
+        .contact-form .btn {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            padding: 18px; /* Larger button for submission */
+            font-size: 1.1em;
+            letter-spacing: 1px;
+            background-color: var(--primary-dark);
+            box-shadow: 0 6px 15px rgba(0, 119, 182, 0.4);
+        }
+
+        .contact-form .btn:hover {
+            background-color: #004a75;
+            transform: translateY(-5px); /* More pronounced hover animation */
+            box-shadow: 0 12px 25px rgba(0, 119, 182, 0.6);
+        }
+        
+        /* ==========================================================
+           RESPONSIVENESS (Mobile Refinements)
+           ========================================================== */
+        @media (max-width: 992px) {
+            section {
+                padding: 60px 0;
+            }
+            
+            h1 { font-size: 3em; }
+            h2 { font-size: 2em; }
+            
+            /* Achievements Fix: Stack cards and left-align content for mobile readability */
+            .achievements-grid {
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+            }
+            
+            .achievement-card {
+                max-width: 100%;
+                text-align: left; /* FIX: Left-align card content on mobile */
+                padding: 20px;
+            }
+            
+            .venture-cards {
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+            }
+            
+            .contact-form-wrapper {
+                margin: 40px 15px 0;
+                padding: 30px;
+            }
+            
+            /* Form Labels: Show labels on small screens for better accessibility */
+            .contact-form label {
+                display: block;
+                margin-bottom: 5px;
+                text-align: left;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            h1 { font-size: 2.2em; }
+            h2 { font-size: 1.8em; }
+        }
+    </style>
+</head>
+<body>
+
+    <section id="hero">
+        <div class="hero-background" data-aos="fade-in" data-aos-duration="1500"></div>
+        <div class="container hero-content">
+            <p data-aos="fade-up" data-aos-duration="1000" style="font-size: 1.1em; font-weight: 500; margin-bottom: 10px;">Sales & Marketing Officer | Award-Winning Entrepreneur</p>
+            <h1 data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">Siphiwo Lushaba</h1>
+            <p style="font-size: 1.4em; margin: 25px auto 40px; max-width: 700px;" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+                **Transforming Vision into Market Leadership:** Driving scalable growth through strategic innovation and influential brand building.
+            </p>
+            <a href="#contact" class="btn" data-aos="zoom-in" data-aos-delay="600" data-aos-duration="1000">Book a Consultation</a>
+        </div>
+    </section>
+
+    <section id="about" class="container">
+        <div data-aos="fade-up" data-aos-duration="1000">
+            <h2>The Vision & The Achievements</h2>
+            <p style="max-width: 800px; margin: 0 auto 50px; text-align: center;">
+                Siphiwo Lushaba is a dynamic force in the intersection of business, leadership, and digital innovation. Driven by a passion for scalable growth and impactful wellness, his journey is a testament to strategic entrepreneurship and unwavering commitment.
+            </p>
+        </div>
+        
+        <div class="achievements-grid">
+            <div class="achievement-card" data-aos="fade-up" data-aos-delay="200">
+                <h3>RAA Leadership Award 2025</h3>
+                <p>Recognized for outstanding leadership and influence in the industry.</p>
+            </div>
+            <div class="achievement-card" data-aos="fade-up" data-aos-delay="400">
+                <h3>YALI RLC COHORT 20 ALUMNI</h3>
+                <p>Developing strategic leadership and public management skills for continental impact.</p>
+            </div>
+            <div class="achievement-card" data-aos="fade-up" data-aos-delay="600">
+                <h3>Ematfuba Ami Startup Winner 2023</h3>
+                <p>Recipient of a top-tier award for innovation and entrepreneurial excellence.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="ventures">
+        <div class="container">
+            <h2 data-aos="fade-down" data-aos-duration="1000">Ventures & Impact</h2>
+            <div class="venture-cards">
+                <div class="venture-card" data-aos="slide-right" data-aos-duration="1000">
+                    <h3>ToFo Digital Founder & CEO</h3>
+                    <p>Leading a cutting-edge digital agency focused on driving measurable results for businesses through innovative marketing strategies.</p>
+                    <br>
+                    <a href="#" class="btn">Visit ToFo Digital</a>
+                </div>
+                <div class="venture-card" data-aos="slide-left" data-aos-duration="1000">
+                    <h3>Talksy Wellness Founder & CEO</h3>
+                    <p>Pioneering mental and holistic wellness solutions designed to empower individuals and enhance productivity in professional settings.</p>
+                    <br>
+                    <a href="#" class="btn">Visit Talksy Wellness</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <div class="container">
+            <h2 data-aos="zoom-in">Let's Connect and Build</h2>
+            <p data-aos="zoom-in" data-aos-delay="100" style="color: var(--light-text);">Partner with an award-winning leader to accelerate your business and brand objectives.</p>
+            <div class="contact-form-wrapper">
+                <form data-aos="fade-up" data-aos-delay="200" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="interest">Service Interest</label>
+                        <select id="interest" name="interest">
+                            <option value="">Select an option</option>
+                            <option value="consultation">Business Consultation</option>
+                            <option value="marketing">Marketing Strategy</option>
+                            <option value="speaking">Speaking Engagement</option>
+                            <option value="partnership">Partnership/Collaboration</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Tell me more about your project or inquiry..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer style="padding: 20px; text-align: center; background-color: #333; color: #ccc;">
+        <p>&copy; 2025 Siphiwo Lushaba. All rights reserved. | Built by SIMISO K MDLULI</p>
+        </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            duration: 1000,
+            easing: 'ease-in-out',
+        });
+    </script>
+</body>
+</html>
