@@ -1,0 +1,586 @@
+/* ========================================================== 
+BASE STYLES & LAYOUT 
+============================================================= */
+:root {
+  --primary-color: #0077b6; /* Professional Blue */
+  --primary-dark: #005f96;
+  --secondary-color: #f1f1f1; /* Light Gray */
+  --text-color: #333;
+  --light-text: #f9f9f9;
+  --font-family-primary: "Arial", sans-serif;
+  --font-family-header: "Helvetica Neue", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ==========================================================
+   NAVIGATION
+============================================================= */
+
+.main-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+  padding: 20px 0;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  font-family: var(--font-family-header);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--light-text);
+}
+
+/* Desktop nav links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: var(--light-text);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.nav-links a:hover {
+  opacity: 0.8;
+}
+
+/* Hamburger button (hidden on desktop) */
+.nav-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background-color: rgba(0, 0, 0, 0.25);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 999px;
+  transition: transform 0.25s, opacity 0.25s;
+}
+
+/* MOBILE / TABLET */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    flex-direction: column;
+    background-color: #9e9a9a;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    gap: 15px;
+    display: none; /* hidden by default on mobile */
+  }
+
+  .nav-links a {
+    color: var(--text-color);
+  }
+
+  .nav-links.nav-links-open {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: flex; /* show hamburger on mobile */
+  }
+
+  /* Optional: shrink gap slightly */
+  .nav-inner {
+    justify-content: space-between;
+  }
+}
+
+/* Hamburger animation when open */
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family-primary);
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: #fff;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+section {
+  padding: 80px 0;
+}
+
+/* TYPOGRAPHY */
+h1,
+h2 {
+  font-family: var(--font-family-header);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 3.8em;
+  line-height: 1.1;
+  color: var(--light-text);
+}
+
+h2 {
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  text-align: center;
+  color: var(--text-color);
+}
+
+section#contact h2 {
+  color: var(--light-text);
+}
+
+/* ==========================================================
+   ACCESSIBILITY UTILITIES
+============================================================= */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================
+   UTILITIES & REUSABLE TEXT STYLES
+============================================================= */
+
+/* Text utilities */
+.text-center {
+  text-align: center;
+}
+
+.text-light {
+  color: var(--light-text);
+}
+
+.hero-tagline {
+  font-size: 1.1em;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.hero-subtitle {
+  font-size: 1.4em;
+  margin: 25px auto 40px;
+  max-width: 700px;
+}
+
+/* Section intro paragraphs */
+.section-intro {
+  max-width: 800px;
+  margin: 0 auto 50px;
+  text-align: center;
+}
+
+.section-secondary {
+  background-color: var(--secondary-color);
+}
+
+/* Competencies intro */
+.competencies-intro {
+  text-align: center;
+  margin-bottom: 50px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Footer */
+.site-footer {
+  padding: 20px;
+  text-align: center;
+  background-color: #333;
+  color: #ccc;
+}
+
+/* BUTTONS */
+.btn {
+  display: inline-block;
+  padding: 14px 40px;
+  background-color: var(--primary-color);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 119, 182, 0.3);
+  border: none; /* Ensure buttons in the body don't have borders */
+}
+
+a.btn {
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 119, 182, 0.4);
+}
+
+/* ========================================================== 
+1. HERO SECTION STYLES (Cinematic Background) 
+============================================================= */
+
+#hero {
+  position: relative;
+  min-height: 100vh;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  padding: 0;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("images/2nd img.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+.hero-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 20px;
+}
+.hero-content p {
+  color: var(--light-text);
+  font-size: 1.2em;
+}
+
+/* ========================================================== 
+2. ABOUT & 3. VENTURES STYLES 
+============================================================= */
+
+#about {
+  background-color: #fff;
+  text-align: center;
+}
+.achievements-grid {
+  width: 100%; /* Important for horizontal centering on desktop */
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+.achievement-card {
+  flex: 1;
+  padding: 30px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  max-width: 300px;
+  background-color: #fff;
+  transition: box-shadow 0.3s, transform 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  text-align: center; /* Default center align for desktop */
+}
+.achievement-card:hover {
+  box-shadow: 0 10px 25px rgba(0, 119, 182, 0.15);
+  transform: translateY(-3px);
+}
+.venture-cards {
+  display: flex;
+  justify-content: space-around;
+  gap: 40px;
+  margin-top: 50px;
+  width: 100%;
+}
+.venture-card {
+  flex: 1;
+  background-color: var(--secondary-color);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.4s;
+}
+
+/* ========================================================== 
+4. CORE COMPETENCIES STYLES 
+============================================================= */
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.skill-item {
+  margin-bottom: 20px;
+}
+
+.skill-label {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  color: var(--primary-dark);
+}
+
+.skill-bar-outer {
+  background-color: #ddd;
+  height: 15px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.skill-bar-inner {
+  height: 100%;
+  background-color: var(--primary-color);
+  color: var(--light-text);
+  font-size: 0.8em;
+  font-weight: bold;
+  line-height: 15px;
+  text-align: right;
+  padding-right: 10px;
+  width: 0; /* Starts at 0, JavaScript handles the full width on load */
+  transition: width 0.5s ease-in-out;
+}
+
+/* RESPONSIVENESS for skills grid */
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: 1fr; /* Stack skills on mobile */
+  }
+}
+
+/* ========================================================== 
+5. CONTACT SECTION STYLES (PREMIUM STYLING) 
+============================================================= */
+#contact {
+  background-color: var(--primary-color);
+  padding: 80px 0 50px 0;
+}
+.contact-form-wrapper {
+  max-width: 600px;
+  margin: 40px auto 0;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+.form-group {
+  position: relative;
+  margin-bottom: 35px;
+}
+
+/* Basic labels hidden on desktop view to use placeholder as label */
+.contact-form label {
+  position: absolute;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #666;
+}
+
+@media (min-width: 993px) {
+  .contact-form label {
+    /* Hidden visually, but accessible */
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+  width: 100%;
+  padding: 15px 15px 15px 15px; /* Consistent padding */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: var(--font-family-primary);
+  font-size: 1em;
+  transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+  outline: none;
+  background-color: var(
+    --secondary-color
+  ); /* Light gray background for fields */
+}
+.contact-form select {
+  /* Make select the same height as input fields */
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+}
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.2);
+  background-color: #fff; /* White background on focus */
+}
+.contact-form textarea {
+  resize: vertical;
+}
+.contact-form .btn {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  padding: 18px; /* Larger button for submission */
+  font-size: 1.1em;
+  letter-spacing: 1px;
+  background-color: var(--primary-dark);
+  box-shadow: 0 6px 15px rgba(0, 119, 182, 0.4);
+}
+.contact-form .btn:hover {
+  background-color: #004a75;
+  transform: translateY(-5px); /* More pronounced hover animation */
+  box-shadow: 0 12px 25px rgba(0, 119, 182, 0.6);
+}
+
+/* ========================================================== 
+RESPONSIVENESS (Mobile Refinements) 
+============================================================= */
+@media (max-width: 992px) {
+  section {
+    padding: 60px 0;
+  }
+  h1 {
+    font-size: 3em;
+  }
+  h2 {
+    font-size: 2em;
+  }
+
+  /* Achievements Fix: Stack cards and left-align content for mobile readability */
+  .achievements-grid {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  .achievement-card {
+    max-width: 100%;
+    text-align: left; /* FIX: Left-align card content on mobile */
+    padding: 20px;
+  }
+  .venture-cards {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  .contact-form-wrapper {
+    margin: 40px 15px 0;
+    padding: 30px;
+  }
+
+  /* Form Labels: Show labels on small screens for better accessibility */
+  .contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+  }
+}
+
+@media (max-width: 576px) {
+  h1 {
+    font-size: 2.2em;
+  }
+  h2 {
+    font-size: 1.8em;
+  }
+}
+
+/* ==========================================================
+   FOOTER
+============================================================= */
+
+.site-footer {
+  padding: 20px;
+  text-align: center;
+  background-color: #333;
+  color: #ccc;
+  font-size: 0.9em;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto;
+  }
+}
